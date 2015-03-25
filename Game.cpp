@@ -2,23 +2,31 @@
 #include "Game.h"
 #include "MainMenu.h"
 #include "SplashScreen.h"
+#include "AIPaddle.h"
 
 void Game::Start(void)
 {
+	
 	if(_gameState != Uninitialized)
 		return;
 	
 	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,32),"Pang!");
 	
-	//_mainWindow.SetFramerateLimit(60);
+	SFMLSoundProvider soundProvider;
+	ServiceLocator::RegisterServiceLocator(&soundProvider);
+	ServiceLocator::GetAudio()->PlaySong("audio/Soundtrack.ogg", true);
 
 	PlayerPaddle *player1 = new PlayerPaddle();
 	player1->SetPosition((SCREEN_WIDTH/2),700);
+
+	AIPaddle * player2 = new AIPaddle();
+	player2->SetPosition((SCREEN_WIDTH / 2), 40);
 
 	GameBall *ball = new GameBall();
 	ball->SetPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2)-15);
 	
 	_gameObjectManager.Add("Paddle1",player1);
+	_gameObjectManager.Add("Paddle2", player2);
 	_gameObjectManager.Add("Ball",ball);
 
 	_gameState= Game::ShowingSplash;

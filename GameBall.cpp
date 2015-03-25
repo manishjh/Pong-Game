@@ -60,6 +60,7 @@ void GameBall::Update(float elapsedTime)
 		sf::Rect<float> p1BB = player1->GetBoundingRect();
 		if (p1BB.intersects(GetBoundingRect()))
 		{
+			ServiceLocator::GetAudio()->PlaySound("audio/kaboom.wav");
 			_angle = 360.0f - (_angle - 180.0f);
 			if (_angle>360.0f) _angle -= 360.0f;
 
