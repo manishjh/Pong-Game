@@ -31,42 +31,15 @@ float PlayerPaddle::GetVelocity() const
 
 void PlayerPaddle::Update(float elapsedTime)
 {
-	sf::Vector2f pos = this->GetPosition();
-
-	if (pos.x <= GetSprite().getLocalBounds().width / 2
-		|| pos.x >= (Game::SCREEN_WIDTH - GetSprite().getGlobalBounds().width / 2))
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		_velocity = -_velocity; // Bounce by current velocity in opposite direction
-	}
-	
-	
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		sf::Vector2f pos = this->GetPosition();
 		
-		if (pos.x <= GetSprite().getLocalBounds().width / 2
-			|| pos.x >= (Game::SCREEN_WIDTH - GetSprite().getGlobalBounds().width / 2))
-		{
-			pos.x += 20;
-			_velocity = 450.0f;
-		}
-		else
 			_velocity = -450.0f;
 	}
 	
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		sf::Vector2f pos = this->GetPosition();
-
 		
-		if (pos.x <= GetSprite().getLocalBounds().width / 2
-			|| pos.x >= (Game::SCREEN_WIDTH - GetSprite().getGlobalBounds().width / 2))
-		{
-			pos.x -= 20;
-			_velocity = -450.0f;
-			;
-		}
-		else
 			_velocity = 450.0f;
 	}
 
@@ -77,6 +50,16 @@ void PlayerPaddle::Update(float elapsedTime)
 	}
 	
 	
+	sf::Vector2f pos = this->GetPosition();
 
+
+	if (pos.x <= GetSprite().getLocalBounds().width / 2 && _velocity < 0
+		|| pos.x >= (Game::SCREEN_WIDTH - GetSprite().getGlobalBounds().width / 2) && _velocity >0)
+	{
+		
+		_velocity = -_velocity;
+
+	}
+	
 	GetSprite().move(_velocity * elapsedTime, 0);
 }

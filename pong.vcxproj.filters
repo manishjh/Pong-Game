@@ -45,6 +45,9 @@
     <ClInclude Include="GameBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AIPaddle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="GameBall.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AIPaddle.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

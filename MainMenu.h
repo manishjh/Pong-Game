@@ -1,21 +1,17 @@
 #pragma once
-#include "SFML\Window.hpp"
-#include "SFML\Graphics.hpp"
+#include"stdafx.h"
 #include <list>
-
 class MainMenu
 {
-
 public:
-	enum MenuResult { Nothing, Exit, Play };	
-	
+	enum MenuResult {Nothing,Exit,Play};
+
 	struct MenuItem
-		{
-		public:
-			sf::Rect<int> rect;
-			MenuResult action;
-		};
-	
+	{
+	public:
+		sf::Rect<int> rect;
+		MenuResult action;
+	};
 	MenuResult Show(sf::RenderWindow& window);
 
 private:
@@ -23,3 +19,4 @@ private:
 	MenuResult HandleClick(int x, int y);
 	std::list<MenuItem> _menuItems;
 };
+
